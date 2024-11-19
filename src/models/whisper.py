@@ -64,7 +64,7 @@ def transcribe_with_whisper(audio_file_path, model_size="base"):
     model = whisper.load_model(model_size).to(device)
 
     # Perform the transcription
-    print("Performing the transcciption")
+    print("Performing the transciption")
     result = model.transcribe(audio=audio_file_path, language="en")
 
     return result["text"]
