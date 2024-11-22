@@ -47,7 +47,7 @@ def enhanced_preprocess_audio(audio_file, export_path=None):
     print("Enhanced audio preprocessing completed.")
     return export_path
 
-def transcribe_with_whisper(audio_file_path, model_size="base"):
+def transcribe_with_whisper(audio_file_path, initial_prompt, model_size="base"):
     """
     Transcribe audio using OpenAI's Whisper model.
     
@@ -65,14 +65,14 @@ def transcribe_with_whisper(audio_file_path, model_size="base"):
 
     # Perform the transcription
     print("Performing the transciption")
-    result = model.transcribe(audio=audio_file_path, language="en")
+    result = model.transcribe(audio=audio_file_path, language="en", initial_prompt=initial_prompt)
 
     return result["text"]
 
-def transcribe_audio(audio):
+def transcribe_audio(audio, initial_prompt):
     print("Starting audio transcription...")
     try:
-        transcript = transcribe_with_whisper(audio)
+        transcript = transcribe_with_whisper(audio,initial_prompt)
         print("Audio transcription completed.")
     
     except sr.UnknownValueError as e:
@@ -86,17 +86,17 @@ def transcribe_audio(audio):
         return ""
     return transcript
 
-def start_transcription(audio_file):
+def start_transcription(audio_file,initial_prompt):
 
     audio_file = enhanced_preprocess_audio(audio_file,"../data/processed/temp2.wav")
-    transcript = transcribe_audio(audio_file)
+    transcript = transcribe_audio(audio_file, initial_prompt)
     if not transcript:
         print("Transcription failed.")
         return ''
     
     return transcript
 
-def record_and_transcribe():
+def record_and_transcribe(initial_prompt):
     recognizer = sr.Recognizer()
     
     with sr.Microphone() as source:
@@ -118,7 +118,7 @@ def record_and_transcribe():
                 wf.setframerate(audio.sample_rate)
                 wf.writeframes(audio.get_raw_data())
 
-            transcript = start_transcription(wav_filename)
+            transcript = start_transcription(wav_filename, initial_prompt)
             
             # Remove temporary WAV file
             os.remove(wav_filename)
@@ -130,7 +130,7 @@ def record_and_transcribe():
         except Exception as e:
             print(f"An error occurred: {str(e)}")
 
-def run(audio_file_path : str = ""):
+def run(audio_file_path : str = "", initial_prompt: str = None):
     if not audio_file_path:
-        return record_and_transcribe()
-    return start_transcription(audio_file_path)
+        return record_and_transcribe(initial_prompt)
+    return start_transcription(audio_file_path, initial_prompt)

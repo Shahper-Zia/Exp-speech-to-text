@@ -1,0 +1,8 @@
+This file serves as a sequence of notebooks that are created while explorating and thinking for this project.
+
+1. test_01.ipynb : Exploring all speech-to-text models/services
+2. test_all.ipynb : Testing speech_recognition engines
+3. whisper_0.ipynb : Testing openai-whisper==20240930 model 
+4. whisper_1.ipynb : Testing openai-whisper==20240930 model with 10 Pharma Specific sentences
+5. gtts.ipynb : Testing Google-Text-to-Speech (gtts) : [ Pharma sentences >-----(gtts)-----> Audio >-----(whisper)-----> Transcription ]
+6. whisper_2.ipynb : Improving Transcription by (a). Giving initial_prompt to whisper. (b). Using phrase-matching algorithm. (c) Using LLM layer after Transcription
