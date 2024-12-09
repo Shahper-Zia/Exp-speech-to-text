@@ -1,7 +1,7 @@
 import requests
 from groq import Groq
 
-GROQ_API_KEY = "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"
+GROQ_API_KEY = ""
 
 def all_models():
 

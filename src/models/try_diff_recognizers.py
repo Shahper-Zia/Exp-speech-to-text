@@ -30,7 +30,7 @@ def try_all_recognizers(audio_data):
     try:
         text = recognizer.recognize_wit(
             audio_data,
-            key="LGUJMGK64BDJUGBUDAFPEXDICAAKVX7J"
+            key=""
         )
         results['Wit.ai (Free)'] = text
     except sr.RequestError as e:
