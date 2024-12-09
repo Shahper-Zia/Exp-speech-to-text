@@ -9,3 +9,4 @@ This file serves as a sequence of notebooks that are created while explorating a
     (a). Giving initial_prompt to whisper.    -> New version may improve its weightage
     (b). Using phrase-matching algorithm.     -> Can be useful while using with Advance algorithm
     (c). Using LLM layer after Transcription. -> New good LLM and improve prompt
+7. whisper_0.ipynb : Testing openai-whisper==20240930 model + Improving Transcription by 6(c) [LLM Layer]

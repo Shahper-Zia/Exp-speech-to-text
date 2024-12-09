@@ -15,19 +15,19 @@ def enhanced_preprocess_audio(audio_file, export_path=None):
     print(f"Starting enhanced audio preprocessing for {audio_file}")
     
     # Convert to mono
-    audio = audio.set_channels(1)
+    # audio = audio.set_channels(1)
     
-    # Normalize audio (adjust volume to a standard level)
-    audio = normalize(audio)
+    # # Normalize audio (adjust volume to a standard level)
+    # audio = normalize(audio)
     
-    # Increase volume by 10 dB (adjust as needed)
-    audio = audio + 10
+    # # Increase volume by 10 dB (adjust as needed)
+    # audio = audio + 10
     
-    # Remove low frequencies (below 80Hz) which are often noise
-    audio = audio.high_pass_filter(80)
+    # # Remove low frequencies (below 80Hz) which are often noise
+    # audio = audio.high_pass_filter(80)
     
-    # Set sample rate to 16kHz
-    audio = audio.set_frame_rate(16000)
+    # # Set sample rate to 16kHz
+    # audio = audio.set_frame_rate(16000)
     
     # If export_path is not provided, create one based on the input filename
     if export_path is None:
@@ -111,7 +111,7 @@ def record_and_transcribe(initial_prompt):
             
             # First save as WAV
             print("saving as wav file")
-            wav_filename = "whis_temp_1.wav"
+            wav_filename = "whisper_temp.wav"
             with wave.open(wav_filename, 'wb') as wf:
                 wf.setnchannels(1)  # Mono
                 wf.setsampwidth(audio.sample_width)
@@ -121,7 +121,7 @@ def record_and_transcribe(initial_prompt):
             transcript = start_transcription(wav_filename, initial_prompt)
             
             # Remove temporary WAV file
-            os.remove(wav_filename)
+            # os.remove(wav_filename)
 
             return transcript
                 
